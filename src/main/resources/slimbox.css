@@ -1,0 +1,98 @@
+#welcomeText {
+  -fx-font-size: 24px;
+  -fx-font-family: "Arial Black";
+  -fx-fill: #818181;
+  -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+}
+
+.intro {
+  -fx-font-size: 14px;
+}
+
+.fixed-width-text {
+  -fx-font-size: 12px;
+  -fx-font-family: "Courier New";
+}
+
+.important {
+  -fx-font-size: 14px;
+  -fx-text-fill: #d9534f;
+}
+
+.center {
+  -fx-alignment: center;
+}
+
+.center-left {
+  -fx-alignment: center-left;
+}
+
+#donateMenu.menu {
+  -fx-background-color: #0275d8;
+}
+
+#donateMenu.menu:hover {
+  -fx-background-color: #1285e8;
+}
+
+#donateMenu.menu .label {
+  -fx-text-fill: white;
+}
+
+#donateMenu .menu-item .label {
+  -fx-text-fill: #292b2c;
+}
+
+.primary {
+  -fx-color: #0275d8;
+  -fx-text-fill: white;
+}
+
+.primary:hover {
+  -fx-color: #1285e8;
+  -fx-text-fill: white;
+}
+
+.primary:pressed {
+  -fx-color: #0265c8;
+  -fx-text-fill: white;
+}
+
+.secondary {
+  -fx-color: #eeeeee;
+  -fx-text-fill: #292b2c;
+}
+
+.secondary:hover {
+  -fx-color: #ffffff;
+  -fx-text-fill: #292b2c;
+}
+
+.secondary:pressed {
+  -fx-color: #dddddd;
+  -fx-text-fill: #292b2c;
+}
+
+.danger {
+  -fx-color: #d9534f;
+  -fx-text-fill: white;
+}
+
+.danger:hover {
+  -fx-color: #e9635f;
+  -fx-text-fill: white;
+}
+
+.danger-text {
+  -fx-text-fill: #d9534f;
+}
+
+.danger:pressed {
+  -fx-color: #c9433f;
+  -fx-text-fill: white;
+}
+
+.search-tab {
+  -fx-border-color:gray;
+  -fx-border-width: 1;
+}

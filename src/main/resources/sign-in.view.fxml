@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+
+<?import javafx.scene.control.Label?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.strnisa.rok.slimbox.view.SignInViewController"
+      spacing="10" alignment="center" styleClass="root">
+  <padding>
+    <Insets top="10" right="10" bottom="10" left="10"/>
+  </padding>
+
+  <Text fx:id="welcomeText"/>
+
+  <Label text="Please note that, by using this application, you agree with its Terms and Conditions, which include:"
+         styleClass="intro"/>
+  <Text fx:id="termsAndConditionsText" styleClass="fixed-width-text"/>
+
+  <HBox spacing="10" alignment="CENTER">
+    <Button fx:id="homepageButton" text="See Homepage" onAction="#onHomepageButtonPressed" styleClass="secondary"/>
+    <Button fx:id="termsAndConditionsButton" text="See Terms and Conditions"
+            onAction="#onTermsAndConditionsButtonPressed" styleClass="secondary"/>
+    <Button fx:id="signInButton" text="Sign in with Google" onAction="#onSignInWithGoogleButtonPressed"
+            styleClass="primary"/>
+  </HBox>
+  <CheckBox fx:id="subscribeToUpdatesCheckBox" text="Subscribe to updates" selected="true"/>
+
+  <stylesheets>
+    <URL value="@slimbox.css"/>
+  </stylesheets>
+</VBox>

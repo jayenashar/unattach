@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import java.net.URL?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.strnisa.rok.slimbox.view.FilenameSchemaController"
+      alignment="CENTER" spacing="10" minWidth="600" minHeight="400">
+  <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+  <GridPane VBox.vgrow="ALWAYS" vgap="10" hgap="10">
+    <Text fx:id="introductionText" GridPane.columnSpan="2" />
+    <Label text="File name schema:" GridPane.rowIndex="1"/>
+    <TextField fx:id="filenameSchemaTextField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    <Label text="Example file name:" GridPane.rowIndex="2"/>
+    <Label fx:id="filenameExampleLabel"  GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+    <Label fx:id="errorLabel" styleClass="danger-text" GridPane.rowIndex="3" GridPane.columnSpan="2"/>
+    <columnConstraints>
+      <ColumnConstraints hgrow="NEVER"/>
+      <ColumnConstraints hgrow="ALWAYS"/>
+    </columnConstraints>
+  </GridPane>
+  <HBox>
+    <Region HBox.hgrow="ALWAYS"/>
+    <Button fx:id="cancelButton" text="Cancel" onAction="#onCancelButtonPressed" HBox.hgrow="NEVER"/>
+    <Region prefWidth="20"/>
+    <Button fx:id="okButton" text="OK" onAction="#onOkButtonPressed" HBox.hgrow="NEVER"/>
+    <Region HBox.hgrow="ALWAYS"/>
+  </HBox>
+  <stylesheets>
+    <URL value="@slimbox.css"/>
+  </stylesheets>
+</VBox>
