@@ -1,0 +1,17 @@
+/target
+*.class
+*.log
+.DS_Store
+
+# IntelliJ
+.idea/
+*.iml
+
+# Editor
+*~
+
+# Application specific
+dependency-reduced-pom.xml
+packages
+slimbox.log*
+tmp
