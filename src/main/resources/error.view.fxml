@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import java.net.URL?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.strnisa.rok.slimbox.view.ErrorController"
+      alignment="CENTER" spacing="10">
+  <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+  <GridPane VBox.vgrow="ALWAYS" vgap="10" hgap="10">
+    <Label text="Stack trace:"/>
+    <TextArea fx:id="exceptionTextArea" editable="false" GridPane.columnIndex="1" />
+    <Label text="Status:" GridPane.rowIndex="1"/>
+    <Label fx:id="statusLabel" text="Sending the stack trace to developers.."
+           GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    <columnConstraints>
+      <ColumnConstraints hgrow="NEVER"/>
+      <ColumnConstraints hgrow="ALWAYS"/>
+    </columnConstraints>
+    <rowConstraints>
+      <RowConstraints vgrow="ALWAYS"/>
+      <RowConstraints vgrow="NEVER"/>
+    </rowConstraints>
+  </GridPane>
+  <Button fx:id="okButton" text="OK" onAction="#onOkButtonPressed" VBox.vgrow="NEVER"/>
+  <stylesheets>
+    <URL value="@slimbox.css"/>
+  </stylesheets>
+</VBox>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TitledPane?>
+
+<fx:root xmlns:fx="http://javafx.com/fxml" type="javafx.scene.control.TitledPane"
+         animated="false" collapsible="false" maxHeight="Infinity" maxWidth="Infinity">
+</fx:root>
