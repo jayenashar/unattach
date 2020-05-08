@@ -19,15 +19,10 @@ public enum Scenes {
   }
 
   public static void setScene(Scenes scenes) throws IOException {
-    Scene scene = null;
-    switch (scenes) {
-      case MAIN:
-        scene = loadScene("/main.view.fxml");
-        break;
-      case SIGN_IN:
-        scene = loadScene("/sign-in.view.fxml");
-        break;
-    }
+    Scene scene = switch (scenes) {
+      case MAIN -> loadScene("/main.view.fxml");
+      case SIGN_IN -> loadScene("/sign-in.view.fxml");
+    };
     Stage newStage = createNewStage();
     newStage.setScene(scene);
     stage.hide();

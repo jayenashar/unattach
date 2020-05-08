@@ -9,8 +9,14 @@
 
 # Editor
 *~
+.classpath
+.project
+.settings
 
 # Application specific
+*.deb
+*.dmg
+*.exe
 dependency-reduced-pom.xml
 packages
 slimbox.log*

@@ -26,4 +26,6 @@ public interface Controller {
   void signOut();
   boolean sendToServer(String contentDescription, String exceptionText, String userText);
   void subscribe(String emailAddress) throws Exception;
+
+  void openWebPage(String uriString);
 }

@@ -7,5 +7,5 @@ public final class Constants {
   public static final String TERMS_AND_CONDITIONS_URL = HOMEPAGE + "/terms-and-conditions.txt";
   public static final String DONATE_URL = HOMEPAGE + "/?action=buy_coffee";
   public static final String PRODUCT_NAME = "Slimbox";
-  public static final String VERSION = "1.6.0-beta";
+  public static final String VERSION = "1.7.0";
 }

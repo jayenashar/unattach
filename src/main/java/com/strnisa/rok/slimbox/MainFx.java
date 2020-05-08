@@ -5,9 +5,6 @@ import com.strnisa.rok.slimbox.view.Scenes;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -28,13 +25,7 @@ public class MainFx extends Application {
     }
   }
 
-  public static void main(String[] args) throws IOException, URISyntaxException {
-    if (args.length == 0 && Runtime.getRuntime().maxMemory() < Math.pow(1000, 3)) {
-      String currentPath = MainFx.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath().substring(1)
-          .replace("/", File.separator);
-      Runtime.getRuntime().exec("java -jar -Xmx1024m \"" + currentPath + "\" restart");
-      return;
-    }
+  public static void main(String[] args) {
     Application.launch(MainFx.class, args);
   }
 }

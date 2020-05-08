@@ -3,19 +3,20 @@ Slimbox
 
 See [homepage](https://rok.strnisa.com/slimbox/) for more info.
 
-License
+Legal
 -------
-See [LICENSE](LICENSE).
+* [LICENSE](LICENSE)
+* [PRIVACY](PRIVACY)
 
 Dependencies
 ------------
-* Install [Java 11](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html).
+* Install [Java 14](https://www.oracle.com/java/technologies/javase-downloads.html).
 * Install [Maven](https://maven.apache.org/download.cgi).
 
 Build & Run
 -----------
 * Build with `mvn clean package`.
-* Run with `java -jar target/slimbox-beta-1.6.0-jar-with-dependencies.jar`.
+* Run with `java -jar target/slimbox-1.7.0-jar-with-dependencies.jar`.
 
 Contributions
 -------------

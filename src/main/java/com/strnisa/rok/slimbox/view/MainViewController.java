@@ -20,7 +20,6 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -302,16 +301,11 @@ public class MainViewController {
 
   @FXML
   private void onOpenButtonPressed() {
-    Desktop desktop = Desktop.getDesktop();
-    try {
-      File targetDirectory = getTargetDirectory();
-      if (targetDirectory.mkdirs()) {
-        LOGGER.info("Created directory \"" + targetDirectory.getAbsolutePath() + "\".");
-      }
-      desktop.open(targetDirectory);
-    } catch (Throwable t) {
-      LOGGER.log(Level.SEVERE, "Failed to open directory.", t);
+    File targetDirectory = getTargetDirectory();
+    if (targetDirectory.mkdirs()) {
+      LOGGER.info("Created directory \"" + targetDirectory.getAbsolutePath() + "\".");
     }
+    controller.openFile(targetDirectory);
   }
 
   private File getTargetDirectory() {

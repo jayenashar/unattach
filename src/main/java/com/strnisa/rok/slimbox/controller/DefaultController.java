@@ -1,11 +1,13 @@
 package com.strnisa.rok.slimbox.controller;
 
 import com.strnisa.rok.slimbox.model.*;
+import org.apache.commons.lang3.SystemUtils;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.SortedSet;
@@ -137,29 +139,46 @@ public class DefaultController implements Controller {
 
   @Override
   public void openFile(File file) {
-    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-    if (desktop == null || !desktop.isSupported(Desktop.Action.BROWSE)) {
-      LOGGER.info("Unable to open a file, since Desktop not supported.");
-    } else {
-      try {
-        desktop.open(file);
-      } catch (Throwable t) {
-        LOGGER.log(Level.SEVERE, "Unable to open file.", t);
+    try {
+      if (SystemUtils.IS_OS_LINUX) {
+        // Desktop.getDesktop().browse() only works on Linux with libgnome installed.
+        if (Runtime.getRuntime().exec(new String[] {"which", "xdg-open"}).getInputStream().read() != -1) {
+          Runtime.getRuntime().exec(new String[] {"xdg-open", file.getAbsolutePath()});
+        } else {
+          LOGGER.log(Level.SEVERE, "Unable to open a file on this operating system.");
+        }
+      } else {
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.OPEN)) {
+          Desktop.getDesktop().open(file);
+        } else {
+          LOGGER.log(Level.SEVERE, "Unable to open a file on this operating system.");
+        }
       }
+    } catch (Throwable t) {
+      LOGGER.log(Level.SEVERE, "Failed to open a file.", t);
     }
   }
 
-  private void openWebPage(String uriString) {
+  @Override
+  public void openWebPage(String uriString) {
     String manualInstructions = "Please visit " + uriString + " manually.";
-    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-    if (desktop == null || !desktop.isSupported(Desktop.Action.BROWSE)) {
-      LOGGER.info("Unable to open a web page from within the application. " + manualInstructions);
-    } else {
-      try {
-        desktop.browse(URI.create(uriString));
-      } catch (Throwable t) {
-        LOGGER.log(Level.SEVERE, "Failed to open a web page. " + manualInstructions, t);
+    try {
+      if (SystemUtils.IS_OS_LINUX) {
+        // Desktop.getDesktop().browse() only works on Linux with libgnome installed.
+        if (Runtime.getRuntime().exec(new String[] {"which", "xdg-open"}).getInputStream().read() != -1) {
+          Runtime.getRuntime().exec(new String[] {"xdg-open", uriString});
+        } else {
+          LOGGER.log(Level.SEVERE, "Unable to open a web page on this operating system. " + manualInstructions);
+        }
+      } else {
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+          Desktop.getDesktop().browse(URI.create(uriString));
+        } else {
+          LOGGER.log(Level.SEVERE, "Unable to open a web page on this operating system. " + manualInstructions);
+        }
       }
+    } catch (Throwable t) {
+      LOGGER.info("Unable to open a web page from within the application. " + manualInstructions);
     }
   }
 }
