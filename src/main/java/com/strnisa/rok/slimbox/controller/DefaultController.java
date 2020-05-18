@@ -7,7 +7,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.SortedSet;
@@ -18,9 +17,16 @@ public class DefaultController implements Controller {
   private static final Logger LOGGER = Logger.getLogger(DefaultController.class.getName());
 
   private final Model model;
+  private final Config config;
 
   DefaultController(Model model) {
     this.model = model;
+    this.config = new FileConfig();
+  }
+
+  @Override
+  public Config getConfig() {
+    return config;
   }
 
   @Override

@@ -5,6 +5,10 @@ Your privacy is important to us.
 Slimbox may read and update information on your Gmail account to your computer,
 but does not distribute any of this information to any other location.
 
+Slimbox's use of information received from Google APIs will adhere to the Google
+API Services User Data Policy, including the Limited Use requirements. See
+http://tiny.cc/google-reqs-api-scopes for more info.
+
 Slimbox may send stack traces (in case program failures) to our servers in
 order to continually improve our service to you. We made every effort to ensure
 that these stack traces don't contain any personal information.

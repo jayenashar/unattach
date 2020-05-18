@@ -10,10 +10,6 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
@@ -22,8 +18,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -50,6 +44,8 @@ public class MainViewController {
   private CheckMenuItem addMetadataCheckMenuItem;
   @FXML
   private Menu viewColumnMenu;
+  @FXML
+  private Menu donateMenu;
   @FXML
   private MenuItem donateTwo;
   @FXML
@@ -115,13 +111,15 @@ public class MainViewController {
     controller = ControllerFactory.getDefaultController();
     emailMenuItem.setText("Signed in as " + controller.getEmailAddress() + ".");
     addMenuForHidingColumns();
+    donateMenu.setGraphic(new Label()); // This enables the CSS style for the menu.
     emailSizeComboBox.setItems(FXCollections.observableList(getEmailSizeOptions()));
     emailSizeComboBox.getSelectionModel().selectFirst();
+    searchQueryTextField.setText(controller.getConfig().getSearchQuery());
     searchProgressBarWithText.progressProperty().setValue(0);
     searchProgressBarWithText.textProperty().setValue("(Searching not started yet.)");
     toggleAllEmailsCheckBox.setTooltip(new Tooltip(DESELECT_ALL_CAPTION));
     selectedTableColumn.setComparator((cb1, cb2) -> Boolean.compare(cb1.isSelected(), cb2.isSelected()));
-    targetDirectoryTextField.setText(getDefaultTargetDirectory());
+    targetDirectoryTextField.setText(controller.getConfig().getTargetDirectory());
     processingProgressBarWithText.progressProperty().setValue(0);
     processingProgressBarWithText.textProperty().setValue("(Processing of emails not started yet.)");
     labelsListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -281,6 +279,7 @@ public class MainViewController {
       }
     } else {
       query = new StringBuilder(searchQueryTextField.getText());
+      controller.getConfig().saveSearchQuery(searchQueryTextField.getText());
     }
     return query.toString();
   }
@@ -296,6 +295,7 @@ public class MainViewController {
     File newTargetDirectory = directoryChooser.showDialog(targetDirectoryTextField.getScene().getWindow());
     if (newTargetDirectory != null) {
       targetDirectoryTextField.setText(newTargetDirectory.getAbsolutePath());
+      controller.getConfig().saveTargetDirectory(newTargetDirectory.getAbsolutePath());
     }
   }
 
@@ -310,12 +310,6 @@ public class MainViewController {
 
   private File getTargetDirectory() {
     return new File(targetDirectoryTextField.getText());
-  }
-
-  private String getDefaultTargetDirectory() {
-    String userHome = System.getProperty("user.home");
-    Path defaultPath = Paths.get(userHome, "Downloads", Constants.PRODUCT_NAME);
-    return defaultPath.toString();
   }
 
   @FXML

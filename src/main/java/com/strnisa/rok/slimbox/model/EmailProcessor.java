@@ -106,9 +106,10 @@ class EmailProcessor {
     }
     String normalizedFilename = filenameFactory.getFilename(email, fileCounter++, originalFilename);
     if (processSettings.processOption.shouldDownload()) {
+      Path targetPath = Path.of(processSettings.targetDirectory.getAbsolutePath(), normalizedFilename);
+      File targetFile = targetPath.toFile();
       //noinspection ResultOfMethodCallIgnored
-      processSettings.targetDirectory.mkdirs();
-      File targetFile = new File(processSettings.targetDirectory, normalizedFilename);
+      targetFile.getParentFile().mkdirs();
       Files.copy(inputStream, targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
       //noinspection ResultOfMethodCallIgnored
       targetFile.setLastModified(email.getTimestamp());

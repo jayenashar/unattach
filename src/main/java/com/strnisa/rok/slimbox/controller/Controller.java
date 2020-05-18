@@ -11,6 +11,7 @@ import java.util.SortedSet;
 public interface Controller {
   void clearPreviousSearch();
   void donate(String item, int amount);
+  Config getConfig();
   List<Email> getEmails();
   String getEmailAddress() throws IOException;
   SortedSet<String> getEmailLabels();

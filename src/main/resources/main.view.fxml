@@ -23,7 +23,7 @@
       <MenuItem text="Open log file" onAction="#onOpenLogMenuItemPressed"/>
       <MenuItem text="About" onAction="#onAboutButtonPressed"/>
     </Menu>
-    <Menu text="Buy Developers a Coffee">
+    <Menu fx:id="donateMenu" text="Buy Developers a Coffee">
       <MenuItem fx:id="donateTwo" text="Espresso (2 USD)" onAction="#onDonateMenuItemPressed"/>
       <MenuItem fx:id="donateFive" text="Cappuccino (3 USD)" onAction="#onDonateMenuItemPressed"/>
       <MenuItem fx:id="donateTen" text="Caramel Machiato (5 USD)" onAction="#onDonateMenuItemPressed"/>
@@ -47,7 +47,7 @@
               <ColumnConstraints hgrow="ALWAYS"/>
             </columnConstraints>
             <Label text="Email labels (can select multiple):" GridPane.rowIndex="1"/>
-            <ListView fx:id="labelsListView" prefHeight="150" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <ListView fx:id="labelsListView" prefHeight="100" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
           </GridPane>
         </Tab>
         <Tab text="Advanced" closable="false">
@@ -56,13 +56,12 @@
               <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
             <HBox alignment="CENTER" spacing="10">
-              <Label text="Type any query supported by GMail."/>
+              <Label text="Type any query supported by Gmail."/>
               <Button text="See query language" onAction="#onQueryButtonPressed" styleClass="secondary"/>
             </HBox>
             <HBox alignment="CENTER" spacing="10">
               <Label text="Query:"/>
-              <TextField fx:id="searchQueryTextField" text="has:attachment size:1m" onAction="#onSearchButtonPressed"
-                         HBox.hgrow="ALWAYS"/>
+              <TextField fx:id="searchQueryTextField" onAction="#onSearchButtonPressed" HBox.hgrow="ALWAYS"/>
             </HBox>
           </VBox>
         </Tab>
@@ -83,7 +82,7 @@
 
   <SubView text="Results" VBox.vgrow="ALWAYS">
     <VBox alignment="CENTER" spacing="10">
-      <TableView fx:id="resultsTable" VBox.vgrow="ALWAYS">
+      <TableView fx:id="resultsTable" prefHeight="200" VBox.vgrow="ALWAYS">
         <columns>
           <TableColumn text="Open" styleClass="center">
             <cellValueFactory>
