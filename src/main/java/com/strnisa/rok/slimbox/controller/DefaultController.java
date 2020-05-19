@@ -2,6 +2,7 @@ package com.strnisa.rok.slimbox.controller;
 
 import com.strnisa.rok.slimbox.model.*;
 import org.apache.commons.lang3.SystemUtils;
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 
 import java.awt.*;
 import java.io.File;
@@ -17,16 +18,9 @@ public class DefaultController implements Controller {
   private static final Logger LOGGER = Logger.getLogger(DefaultController.class.getName());
 
   private final Model model;
-  private final Config config;
 
   DefaultController(Model model) {
     this.model = model;
-    this.config = new FileConfig();
-  }
-
-  @Override
-  public Config getConfig() {
-    return config;
   }
 
   @Override
@@ -40,6 +34,11 @@ public class DefaultController implements Controller {
   }
 
   @Override
+  public String getTargetDirectory() {
+    return model.getTargetDirectory();
+  }
+
+  @Override
   public void donate(String item, int amount) {
     String uriString = Constants.DONATE_URL;
     uriString += "&coffee_type=" + item.replace(" ", "%20") + "&coffee_price=" + amount;
@@ -49,6 +48,11 @@ public class DefaultController implements Controller {
   @Override
   public LongTask<ProcessEmailResult> getProcessTask(Email email, ProcessSettings processSettings) {
     return model.getProcessTask(email, processSettings);
+  }
+
+  @Override
+  public String getSearchQuery() {
+    return model.getSearchQuery();
   }
 
   @Override
@@ -69,6 +73,16 @@ public class DefaultController implements Controller {
   @Override
   public void setFilenameSchema(String filenameSchema) {
     model.setFilenameSchema(filenameSchema);
+  }
+
+  @Override
+  public void saveSearchQuery(String query) {
+    model.saveSearchQuery(query);
+  }
+
+  @Override
+  public void saveTargetDirectory(String path) {
+    model.saveTargetDirectory(path);
   }
 
   @Override
@@ -103,6 +117,19 @@ public class DefaultController implements Controller {
   @Override
   public String getFilenameSchema() {
     return model.getFilenameSchema();
+  }
+
+  @Override
+  public DefaultArtifactVersion getLatestVersion() {
+    try {
+      LOGGER.info("Getting latest version..");
+      DefaultArtifactVersion latestVersion = model.getLatestVersion();
+      LOGGER.info("Getting latest version.. successful.");
+      return latestVersion;
+    } catch (Throwable t) {
+      LOGGER.log(Level.SEVERE, "Getting latest version.. failed.", t);
+      return null;
+    }
   }
 
   @Override

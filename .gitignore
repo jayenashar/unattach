@@ -21,3 +21,5 @@ dependency-reduced-pom.xml
 packages
 slimbox.log*
 tmp
+*.zip
+Slimbox.app

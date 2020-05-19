@@ -1,7 +1,9 @@
 package com.strnisa.rok.slimbox.model;
 
 import com.strnisa.rok.slimbox.controller.LongTask;
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -66,6 +68,31 @@ public class MockModel implements Model {
   @Override
   public LongTask<ProcessEmailResult> getProcessTask(Email email, ProcessSettings processSettings) {
     return new ProcessEmailTask(email, e -> new ProcessEmailResult(Collections.singleton(e.getGmailId())));
+  }
+
+  @Override
+  public DefaultArtifactVersion getLatestVersion() {
+    return new DefaultArtifactVersion(Constants.VERSION);
+  }
+
+  @Override
+  public String getSearchQuery() {
+    return null;
+  }
+
+  @Override
+  public String getTargetDirectory() {
+    return null;
+  }
+
+  @Override
+  public void saveSearchQuery(String query) {
+
+  }
+
+  @Override
+  public void saveTargetDirectory(String path) {
+
   }
 
   @Override

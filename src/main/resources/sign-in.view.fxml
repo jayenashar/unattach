@@ -27,7 +27,11 @@
     <Button fx:id="signInButton" text="Sign in with Google" onAction="#onSignInWithGoogleButtonPressed"
             styleClass="primary"/>
   </HBox>
-  <CheckBox fx:id="subscribeToUpdatesCheckBox" text="Subscribe to updates" selected="true"/>
+  <HBox spacing="50" alignment="CENTER">
+    <CheckBox fx:id="subscribeToUpdatesCheckBox" text="Subscribe to updates" selected="true"/>
+    <Region minWidth="50" HBox.hgrow="ALWAYS" />
+    <Label fx:id="versionMessage" text="Checking for latest version.." />
+  </HBox>
 
   <stylesheets>
     <URL value="@slimbox.css"/>

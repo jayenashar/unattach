@@ -16,7 +16,7 @@ Dependencies
 Build & Run
 -----------
 * Build with `mvn clean package`.
-* Run with `java -jar target/slimbox-1.8.0-jar-with-dependencies.jar`.
+* Run with `java -jar target/slimbox-1.9.0-jar-with-dependencies.jar`.
 
 Contributions
 -------------

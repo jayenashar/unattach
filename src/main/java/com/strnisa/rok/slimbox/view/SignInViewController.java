@@ -8,7 +8,9 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -30,6 +32,8 @@ public class SignInViewController {
   private Button signInButton;
   @FXML
   private CheckBox subscribeToUpdatesCheckBox;
+  @FXML
+  public Label versionMessage;
 
   @FXML
   public void initialize() {
@@ -43,6 +47,7 @@ public class SignInViewController {
         "or services. Moreover, Licensor shall never be liable for any defect in source code written by Licensee\n" +
         "when relying on the Software or using the Software's source code.");
     Platform.runLater(() -> signInButton.requestFocus());
+    Platform.runLater(this::checkLatestVersion);
   }
 
   @FXML
@@ -95,6 +100,18 @@ public class SignInViewController {
     };
 
     new Thread(task).start();
+  }
+
+  private void checkLatestVersion() {
+    DefaultArtifactVersion currentVersion = new DefaultArtifactVersion(Constants.VERSION);
+    DefaultArtifactVersion latestVersion = controller.getLatestVersion();
+    if (latestVersion == null) {
+      versionMessage.setText("Failed to find out the latest version.");
+    } else if (currentVersion.compareTo(latestVersion) >= 0) {
+      versionMessage.setText("You have the latest version.");
+    } else {
+      versionMessage.setText("Newer version available: " + latestVersion);
+    }
   }
 
   private void disableControls() {

@@ -4,13 +4,14 @@ set -e -u -x -o pipefail
 
 mvn clean package
 
-VERSION=1.8.0
+VERSION=1.9.0
 DESCRIPTION="Easily download email attachments in bulk, and optionally remove them from the original emails."
 VENDOR="Rok Strniša"
 COPYRIGHT="Copyright 2020, All rights reserved"
 MAIN_CLASS="com.strnisa.rok.slimbox.Main"
-JAR_PATH=`ls target/*-with-dependencies.jar`
-JAR_FILE=`basename "$JAR_PATH"`
+JAVA_OPTION="-Xmx2000m"
+JAR_PATH=$(ls target/*-with-dependencies.jar)
+JAR_FILE=$(basename "$JAR_PATH")
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   rm -rf ./*.deb
@@ -19,7 +20,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     --icon src/main/resources/logo-256.png \
     --linux-shortcut \
     --input target \
-    --java-options "-Xmx1024m" \
+    --java-options "$JAVA_OPTION" \
     --main-jar "$JAR_FILE" \
     --main-class $MAIN_CLASS
 elif [[ "$OSTYPE" == "darwin"* ]]; then
@@ -31,7 +32,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   jar xf "$JAR_FILE"
   rm "$JAR_FILE"
   ls *.dylib | xargs codesign -s "Developer ID Application: Rok Strnisa (73XQUXV944)" -f -v
-  jar cmf META-INF/MANIFEST.MF "../$JAR_PATH" *
+  jar cmf META-INF/MANIFEST.MF "../$JAR_PATH" ./*
   popd
   # Create APP.
   rm -rf Slimbox.app
@@ -40,23 +41,23 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     --input target \
     --main-jar "$JAR_FILE" \
     --main-class $MAIN_CLASS \
-    --java-options "-Xmx1024m" \
+    --java-options "$JAVA_OPTION" \
     --type app-image
   # Sign APP's runtime and itself.
   codesign -s "Developer ID Application: Rok Strnisa (73XQUXV944)" --options runtime --entitlements macos.entitlements -f -v Slimbox.app/Contents/runtime/Contents/MacOS/libjli.dylib
   codesign -s "Developer ID Application: Rok Strnisa (73XQUXV944)" --options runtime --entitlements macos.entitlements -f -v Slimbox.app/Contents/MacOS/Slimbox
   codesign -s "Developer ID Application: Rok Strnisa (73XQUXV944)" --options runtime --entitlements macos.entitlements -f -v Slimbox.app
   # Create DMG.
-  rm -rf *.dmg
+  rm -rf ./*.dmg
   jpackage --name Slimbox --app-version $VERSION --description "$DESCRIPTION" --vendor "$VENDOR" --copyright "$COPYRIGHT" \
     --license-file LICENSE \
     --type dmg --app-image Slimbox.app
   # Sign DMG.
   codesign -s "Developer ID Application: Rok Strnisa (73XQUXV944)" --options runtime --entitlements macos.entitlements -vvvv --deep Slimbox-$VERSION.dmg
   # Upload DMG for verification.
-  REQUEST_UUID=`xcrun altool --notarize-app --primary-bundle-id "com.strnisa.rok.slimbox-$VERSION" -u "rok.strnisa@gmail.com" -p "@keychain:SLIMBOX_APP_PASSWORD" --file Slimbox-$VERSION.dmg | grep RequestUUID | awk '{print $3}'`
+  REQUEST_UUID=$(xcrun altool --notarize-app --primary-bundle-id "com.strnisa.rok.slimbox-$VERSION" -u "rok.strnisa@gmail.com" -p "@keychain:SLIMBOX_APP_PASSWORD" --file Slimbox-$VERSION.dmg | grep RequestUUID | awk '{print $3}')
   # Wait for verification to complete.
-  while xcrun altool --notarization-info $REQUEST_UUID -u rok.strnisa@gmail.com -p "@keychain:SLIMBOX_APP_PASSWORD" | grep "Status: in progress" > /dev/null; do
+  while xcrun altool --notarization-info "$REQUEST_UUID" -u rok.strnisa@gmail.com -p "@keychain:SLIMBOX_APP_PASSWORD" | grep "Status: in progress" > /dev/null; do
     echo "Verification in progress..."
     sleep 30
   done
@@ -73,7 +74,7 @@ elif [[ "$OSTYPE" == "msys" ]]; then
     --icon src/main/resources/logo-256.ico \
     --win-shortcut --win-dir-chooser \
     --input target \
-    --java-options "-Xmx1024m" \
+    --java-options "$JAVA_OPTION" \
     --main-jar "$JAR_FILE" \
     --main-class com.strnisa.rok.slimbox.Main
 else

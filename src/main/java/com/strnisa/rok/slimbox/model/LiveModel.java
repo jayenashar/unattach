@@ -7,6 +7,7 @@ import com.google.api.client.http.HttpHeaders;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.*;
 import com.strnisa.rok.slimbox.controller.LongTask;
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -27,13 +28,14 @@ public class LiveModel implements Model {
   private static final Logger LOGGER = Logger.getLogger(LiveModel.class.getName());
   private static final String USER = "me";
 
+  private final Config config;
   private GmailServiceLifecycleManager serviceLifecycleManager;
   private Gmail service;
-  private String filenameSchema;
   private List<Email> emails;
   private String emailAddress;
 
   public LiveModel() {
+    this.config = new FileConfig();
     configureMimeLibrary();
     reset();
   }
@@ -67,7 +69,6 @@ public class LiveModel implements Model {
   private void reset() {
     serviceLifecycleManager = null;
     service = null;
-    filenameSchema = FilenameFactory.DEFAULT_SCHEMA;
     emailAddress = null;
     clearPreviousSearch();
   }
@@ -75,6 +76,31 @@ public class LiveModel implements Model {
   @Override
   public void clearPreviousSearch() {
     emails = new ArrayList<>();
+  }
+
+  @Override
+  public DefaultArtifactVersion getLatestVersion() throws IOException, InterruptedException {
+    return HttpClient.getLatestVersion();
+  }
+
+  @Override
+  public String getSearchQuery() {
+    return config.getSearchQuery();
+  }
+
+  @Override
+  public String getTargetDirectory() {
+    return config.getTargetDirectory();
+  }
+
+  @Override
+  public void saveSearchQuery(String query) {
+    config.saveSearchQuery(query);
+  }
+
+  @Override
+  public void saveTargetDirectory(String path) {
+    config.saveTargetDirectory(path);
   }
 
   @Override
@@ -111,7 +137,7 @@ public class LiveModel implements Model {
 
   @Override
   public void setFilenameSchema(String filenameSchema) {
-    this.filenameSchema = filenameSchema;
+    config.saveFilenameSchema(filenameSchema);
   }
 
   @Override
@@ -136,7 +162,7 @@ public class LiveModel implements Model {
 
   @Override
   public String getFilenameSchema() {
-    return filenameSchema;
+    return config.getFilenameSchema();
   }
 
   @Override

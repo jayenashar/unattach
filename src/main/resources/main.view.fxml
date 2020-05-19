@@ -25,10 +25,11 @@
     </Menu>
     <Menu fx:id="donateMenu" text="Buy Developers a Coffee">
       <MenuItem fx:id="donateTwo" text="Espresso (2 USD)" onAction="#onDonateMenuItemPressed"/>
-      <MenuItem fx:id="donateFive" text="Cappuccino (3 USD)" onAction="#onDonateMenuItemPressed"/>
-      <MenuItem fx:id="donateTen" text="Caramel Machiato (5 USD)" onAction="#onDonateMenuItemPressed"/>
-      <MenuItem fx:id="donateTwenty" text="Bag of Coffee (10 USD)" onAction="#onDonateMenuItemPressed"/>
-      <MenuItem fx:id="donateCustom" text="Custom amount .." onAction="#onDonateMenuItemPressed"/>
+      <MenuItem fx:id="donateFive" text="Cappuccino (5 USD)" onAction="#onDonateMenuItemPressed"/>
+      <MenuItem fx:id="donateTen" text="Caramel Machiato (10 USD)" onAction="#onDonateMenuItemPressed"/>
+      <MenuItem fx:id="donateTwentyFive" text="Bag of Coffee (25 USD)" onAction="#onDonateMenuItemPressed"/>
+      <MenuItem fx:id="donateFifty" text="Coffee Machine (50 USD)" onAction="#onDonateMenuItemPressed"/>
+      <MenuItem fx:id="donateCustom" text="A Truck of Coffee" onAction="#onDonateMenuItemPressed"/>
     </Menu>
   </MenuBar>
 

@@ -53,7 +53,9 @@ public class MainViewController {
   @FXML
   private MenuItem donateTen;
   @FXML
-  private MenuItem donateTwenty;
+  private MenuItem donateTwentyFive;
+  @FXML
+  private MenuItem donateFifty;
   @FXML
   private MenuItem donateCustom;
 
@@ -114,12 +116,12 @@ public class MainViewController {
     donateMenu.setGraphic(new Label()); // This enables the CSS style for the menu.
     emailSizeComboBox.setItems(FXCollections.observableList(getEmailSizeOptions()));
     emailSizeComboBox.getSelectionModel().selectFirst();
-    searchQueryTextField.setText(controller.getConfig().getSearchQuery());
+    searchQueryTextField.setText(controller.getSearchQuery());
     searchProgressBarWithText.progressProperty().setValue(0);
     searchProgressBarWithText.textProperty().setValue("(Searching not started yet.)");
     toggleAllEmailsCheckBox.setTooltip(new Tooltip(DESELECT_ALL_CAPTION));
     selectedTableColumn.setComparator((cb1, cb2) -> Boolean.compare(cb1.isSelected(), cb2.isSelected()));
-    targetDirectoryTextField.setText(controller.getConfig().getTargetDirectory());
+    targetDirectoryTextField.setText(controller.getTargetDirectory());
     processingProgressBarWithText.progressProperty().setValue(0);
     processingProgressBarWithText.textProperty().setValue("(Processing of emails not started yet.)");
     labelsListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -279,7 +281,7 @@ public class MainViewController {
       }
     } else {
       query = new StringBuilder(searchQueryTextField.getText());
-      controller.getConfig().saveSearchQuery(searchQueryTextField.getText());
+      controller.saveSearchQuery(searchQueryTextField.getText());
     }
     return query.toString();
   }
@@ -295,7 +297,7 @@ public class MainViewController {
     File newTargetDirectory = directoryChooser.showDialog(targetDirectoryTextField.getScene().getWindow());
     if (newTargetDirectory != null) {
       targetDirectoryTextField.setText(newTargetDirectory.getAbsolutePath());
-      controller.getConfig().saveTargetDirectory(newTargetDirectory.getAbsolutePath());
+      controller.saveTargetDirectory(newTargetDirectory.getAbsolutePath());
     }
   }
 
@@ -454,18 +456,15 @@ public class MainViewController {
     if (source == donateTwo) {
       controller.donate("Espresso", 2);
     } else if (source == donateFive) {
-      controller.donate("Cappuccino", 3);
+      controller.donate("Cappuccino", 5);
     } else if (source == donateTen) {
-      controller.donate("Caramel Machiato", 5);
-    } else if (source == donateTwenty) {
-      controller.donate("Bag of Coffee", 10);
+      controller.donate("Caramel Machiato", 10);
+    } else if (source == donateTwentyFive) {
+      controller.donate("Bag of Coffee", 25);
+    } else if (source == donateFifty) {
+      controller.donate("Coffee Machine", 50);
     } else if (source == donateCustom) {
-      Stage dialog = Scenes.createNewStage("donate");
-      dialog.initOwner(root.getScene().getWindow());
-      dialog.initModality(Modality.APPLICATION_MODAL);
-      dialog.setScene(Scenes.loadScene("/coffee.view.fxml"));
-      dialog.resizableProperty().setValue(false);
-      Scenes.showAndPreventMakingSmaller(dialog);
+      controller.donate("A Truck of Coffee", 0);
     }
   }
 
