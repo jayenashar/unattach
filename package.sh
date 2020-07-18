@@ -4,7 +4,7 @@ set -e -u -x -o pipefail
 
 mvn clean package
 
-VERSION=1.9.0
+VERSION=1.10.0
 DESCRIPTION="Easily download email attachments in bulk, and optionally remove them from the original emails."
 VENDOR="Rok Strniša"
 COPYRIGHT="Copyright 2020, All rights reserved"

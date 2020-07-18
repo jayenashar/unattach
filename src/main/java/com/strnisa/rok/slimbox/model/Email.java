@@ -9,7 +9,7 @@ import java.util.*;
 public class Email {
   private final String gmailId;
   private final String uniqueId;
-  private final Set<String> labelIds;
+  private final SortedSet<String> labelIds;
   private final String from;
   private final String subject;
   private final long timestamp;
@@ -21,7 +21,7 @@ public class Email {
                int sizeInBytes) {
     this.gmailId = gmailId;
     this.uniqueId = uniqueId;
-    this.labelIds = Collections.unmodifiableSet(labelIds == null ? Collections.emptySet() : new TreeSet<>(labelIds));
+    this.labelIds = Collections.unmodifiableSortedSet(labelIds == null ? Collections.emptySortedSet() : new TreeSet<>(labelIds));
     this.from = from;
     this.subject = subject;
     this.timestamp = timestamp;
@@ -42,7 +42,7 @@ public class Email {
 
   @FXML
   public String getLabelIdsString() {
-    return StringUtils.join(labelIds, ", ");
+    return StringUtils.join(labelIds, "_");
   }
 
   @FXML
@@ -60,7 +60,9 @@ public class Email {
   }
 
   String getFromEmail() {
-    if (from.endsWith(">")) {
+    if (from == null) {
+      return "";
+    } else if (from.endsWith(">")) {
       return from.substring(from.lastIndexOf('<') + 1, from.length() - 1);
     } else {
       return from;

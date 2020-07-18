@@ -26,6 +26,7 @@ public class FilenameFactory {
     template = replaceRawAndNormalised(template, "DATE", email.getDateIso8601(), FilenameFactory::simpleTrim);
     template = replaceRawAndNormalised(template, "ID", email.getGmailId(), FilenameFactory::simpleTrim);
     template = replaceRawAndNormalised(template, "BODY_PART_INDEX", String.valueOf(bodyPartIndex), FilenameFactory::simpleTrim);
+    template = replaceRawAndNormalised(template, "LABELS", email.getLabelIdsString(), FilenameFactory::simpleTrim);
     template = replaceRawAndNormalised(template, "ATTACHMENT_NAME", attachmentName, FilenameFactory::basenameTrim);
     if (template.contains("${")) {
       int start = template.indexOf("${");

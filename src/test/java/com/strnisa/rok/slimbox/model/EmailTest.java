@@ -12,6 +12,7 @@ class EmailTest {
 
   @Test
   void getFromEmail() {
+    assertEquals("", getEmail(null).getFromEmail());
     assertEquals("rok@strnisa.com", getEmail("rok@strnisa.com").getFromEmail());
     assertEquals("rok@strnisa.com", getEmail("Rok Strniša <rok@strnisa.com>").getFromEmail());
     assertEquals("rok@strnisa.com", getEmail("\"Rok Strniša\" <rok@strnisa.com>").getFromEmail());

@@ -10,10 +10,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class FilenameSchemaController {
-  private static final Email email = new Email("17b4aed892cc3f0b", "17b4aed892cc3f0b", null,
-      "\"John Doe\" <john.doe@example.com>", "Re: Holiday plans", 1501545600000L,
-      1234567);
+  private static final Email email = new Email("17b4aed892cc3f0b", "17b4aed892cc3f0b",
+          Arrays.asList("IMPORTANT", "SENT"), "\"John Doe\" <john.doe@example.com>", "Re: Holiday plans",
+          1501545600000L, 1234567);
   private Controller controller;
 
   @FXML
@@ -46,7 +49,8 @@ public class FilenameSchemaController {
             "- DATE, e.g. " + getSchemaVariableExample("DATE") + "\n" +
             "- ID, e.g. " + getSchemaVariableExample("ID") + "\n" +
             "- BODY_PART_INDEX, e.g. " + getSchemaVariableExample("BODY_PART_INDEX") + "\n" +
-            "- ATTACHMENT_NAME, e.g. " + getSchemaVariableExample("ATTACHMENT_NAME") + "\n\n" +
+            "- ATTACHMENT_NAME, e.g. " + getSchemaVariableExample("ATTACHMENT_NAME") + "\n" +
+            "- LABELS, e.g. " + getSchemaVariableExample("LABELS") + "\n\n" +
             "There are also RAW_ (e.g. RAW_SUBJECT) variants of the above variables, but they are not recommended,\n" +
             "since they may contain symbols not suitable for file names.\n\n" +
             "Additionally, you can set the maximum length for each variable's expansion. For example, to use\n" +

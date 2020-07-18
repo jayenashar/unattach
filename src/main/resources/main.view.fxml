@@ -47,7 +47,7 @@
               <ColumnConstraints hgrow="NEVER"/>
               <ColumnConstraints hgrow="ALWAYS"/>
             </columnConstraints>
-            <Label text="Email labels (can select multiple):" GridPane.rowIndex="1"/>
+            <Label fx:id="labelsListViewLabel" GridPane.rowIndex="1"/>
             <ListView fx:id="labelsListView" prefHeight="100" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
           </GridPane>
         </Tab>

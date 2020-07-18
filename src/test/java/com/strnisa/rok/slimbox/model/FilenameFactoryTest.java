@@ -3,11 +3,12 @@ package com.strnisa.rok.slimbox.model;
 import org.junit.Test;
 
 import java.security.InvalidParameterException;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FilenameFactoryTest {
-  private static final Email email = new Email("id3", "uid42", null,
+  private static final Email email = new Email("id3", "uid42", Arrays.asList("SENT", "IMPORTANT"),
       "\"Rok Strniša\" <rok@strnisa.com>", "subject", 1501545600000L, 32141);
 
   @Test
@@ -64,6 +65,11 @@ public class FilenameFactoryTest {
     testGetFilename("${ATTACHMENT_NAME}", "a%b~.jpg", "a_b_.jpg");
     testGetFilename("${ATTACHMENT_NAME:3}", "a%b~", "a_b");
     testGetFilename("${ATTACHMENT_NAME:6}", "a%b~.jpg", "a_.jpg");
+  }
+
+  @Test
+  public void testLabels() {
+    testGetFilename("${LABELS}", "a%b@.jpg", "IMPORTANT_SENT");
   }
 
   @Test(expected = InvalidParameterException.class)

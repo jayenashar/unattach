@@ -16,7 +16,7 @@ Dependencies
 Build & Run
 -----------
 * Build with `mvn clean package`.
-* Run with `java -jar target/slimbox-1.9.0-jar-with-dependencies.jar`.
+* Run with `java -jar target/slimbox-1.10.0-jar-with-dependencies.jar`.
 
 Contributions
 -------------
@@ -26,5 +26,5 @@ Feel free to
 
 Buy Developers a Coffee
 -----------------------
-You can support this project by donating through the "Buy Developers a
-Coffee" button on the [homepage](https://rok.strnisa.com/slimbox/).
+You can support this project by
+[Buying Developers a Coffee](https://rok.strnisa.com/slimbox/?action=buy_coffee&coffee_type=Coffee&coffee_price=0) :)

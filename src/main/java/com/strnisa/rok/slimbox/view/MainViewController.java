@@ -65,6 +65,8 @@ public class MainViewController {
   @FXML
   private ComboBox<ComboItem<Integer>> emailSizeComboBox;
   @FXML
+  private Label labelsListViewLabel;
+  @FXML
   private ListView<String> labelsListView;
   @FXML
   private TextField searchQueryTextField;
@@ -124,6 +126,7 @@ public class MainViewController {
     targetDirectoryTextField.setText(controller.getTargetDirectory());
     processingProgressBarWithText.progressProperty().setValue(0);
     processingProgressBarWithText.textProperty().setValue("(Processing of emails not started yet.)");
+    labelsListViewLabel.setText("Email labels:\n(If selecting multiple, results will match any.)");
     labelsListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     labelsListView.setItems(FXCollections.observableList(new ArrayList<>(controller.getEmailLabels())));
   }
@@ -276,8 +279,11 @@ public class MainViewController {
       int minEmailSizeInMb = emailSizeComboBox.getSelectionModel().getSelectedItem().value;
       query.append(String.format("has:attachment size:%dm", minEmailSizeInMb));
       ObservableList<String> emailLabels = labelsListView.getSelectionModel().getSelectedItems();
-      for (String emailLabel : emailLabels) {
-        query.append(String.format(" label:\"%s\"", emailLabel));
+      if (!emailLabels.isEmpty()) {
+        query.append(" {");
+        query.append(emailLabels.stream().map(label -> String.format("label:\"%s\"", label))
+                .collect(Collectors.joining(" ")));
+        query.append("}");
       }
     } else {
       query = new StringBuilder(searchQueryTextField.getText());
