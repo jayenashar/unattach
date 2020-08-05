@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import java.net.URL?>
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.strnisa.rok.slimbox.view.ErrorController"
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="app.unattach.view.ErrorController"
       alignment="CENTER" spacing="10">
   <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
   <GridPane VBox.vgrow="ALWAYS" vgap="10" hgap="10">
@@ -29,6 +29,6 @@
   </GridPane>
   <Button fx:id="okButton" text="OK" onAction="#onOkButtonPressed" VBox.vgrow="NEVER"/>
   <stylesheets>
-    <URL value="@slimbox.css"/>
+    <URL value="@unattach.css"/>
   </stylesheets>
 </VBox>

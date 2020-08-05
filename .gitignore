@@ -19,7 +19,7 @@
 *.exe
 dependency-reduced-pom.xml
 packages
-slimbox.log*
+unattach.log*
 tmp
 *.zip
-Slimbox.app
+Unattach.app

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 <?import java.net.URL?>
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.strnisa.rok.slimbox.view.FilenameSchemaController"
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="app.unattach.view.FilenameSchemaController"
       alignment="CENTER" spacing="10" minWidth="600" minHeight="400">
   <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
   <GridPane VBox.vgrow="ALWAYS" vgap="10" hgap="10">
@@ -28,6 +28,6 @@
     <Region HBox.hgrow="ALWAYS"/>
   </HBox>
   <stylesheets>
-    <URL value="@slimbox.css"/>
+    <URL value="@unattach.css"/>
   </stylesheets>
 </VBox>

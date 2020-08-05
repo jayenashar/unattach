@@ -8,7 +8,7 @@
 <?import javafx.scene.control.CheckBox?>
 
 <?import javafx.scene.control.Label?>
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.strnisa.rok.slimbox.view.SignInViewController"
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="app.unattach.view.SignInViewController"
       spacing="10" alignment="center" styleClass="root">
   <padding>
     <Insets top="10" right="10" bottom="10" left="10"/>
@@ -34,6 +34,6 @@
   </HBox>
 
   <stylesheets>
-    <URL value="@slimbox.css"/>
+    <URL value="@unattach.css"/>
   </stylesheets>
 </VBox>

@@ -1,7 +1,7 @@
-Slimbox
-=======
+Unattach
+========
 
-See [homepage](https://rok.strnisa.com/slimbox/) for more info.
+See [homepage](https://unattach.app/) for more info.
 
 Legal
 -------
@@ -16,7 +16,7 @@ Dependencies
 Build & Run
 -----------
 * Build with `mvn clean package`.
-* Run with `java -jar target/slimbox-1.10.0-jar-with-dependencies.jar`.
+* Run with `java -jar target/unattach-2.0.0-jar-with-dependencies.jar`.
 
 Contributions
 -------------
@@ -24,7 +24,9 @@ Feel free to
 [file issues](https://help.github.com/en/articles/creating-an-issue) and
 [create pull requests](https://help.github.com/en/articles/creating-a-pull-request).
 
-Buy Developers a Coffee
------------------------
-You can support this project by
-[Buying Developers a Coffee](https://rok.strnisa.com/slimbox/?action=buy_coffee&coffee_type=Coffee&coffee_price=0) :)
+Support This Project
+--------------------
+If you like Unattach,
+[Buy Developers a Coffee](https://unattach.app/?action=buy_coffee&coffee_type=Coffee&coffee_price=0) ☕
+
+You can also [Become My Sponsor](https://github.com/sponsors/rokstrnisa) ❤️

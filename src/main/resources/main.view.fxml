@@ -5,8 +5,11 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<?import com.strnisa.rok.slimbox.view.*?>
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.strnisa.rok.slimbox.view.MainViewController" fx:id="root">
+<?import app.unattach.view.SubView?>
+<?import app.unattach.view.ProgressBarWithText?>
+<?import app.unattach.view.LinkButtonTableCellFactory?>
+<?import app.unattach.view.SelectedCheckBoxTableCellFactory?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="app.unattach.view.MainViewController" fx:id="root">
   <MenuBar>
     <Menu text="Account">
       <MenuItem fx:id="emailMenuItem"/>
@@ -185,6 +188,6 @@
   </SubView>
 
   <stylesheets>
-    <URL value="@slimbox.css"/>
+    <URL value="@unattach.css"/>
   </stylesheets>
 </VBox>
